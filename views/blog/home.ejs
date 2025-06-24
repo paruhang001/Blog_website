@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MyBlog - Home</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-[#f8f9fa] text-gray-800 font-[Inter,sans-serif]">
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-extrabold text-gray-900">📰 MyBlog</h1>
+      <nav class="space-x-6 text-md font-medium">
+        <a href="/" class="text-gray-600 hover:text-blue-600 transition">Home</a>
+        <a href="/add" class="text-gray-600 hover:text-blue-600 transition">Write</a>
+        <a href="/logout" class="text-gray-600 hover:text-blue-600 transition">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="bg-[#e7f0f7] py-12 text-center">
+    <h2 class="text-4xl font-bold text-blue-800 mb-2">Welcome to MyBlog</h2>
+    <p class="text-lg text-blue-600 italic">"Write what matters. Read what inspires."</p>
+  </section>
+
+  <main class="max-w-5xl mx-auto px-4 py-10">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Latest Posts</h3>
+
+    <% if (posts.length === 0) { %>
+      <p class="text-gray-500 italic text-lg">There are no posts yet. Start writing your first one!</p>
+    <% } else { %>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <% posts.forEach(function(post) { %>
+          <div class="bg-white rounded-2xl shadow hover:shadow-md transition duration-300 p-5 flex flex-col justify-between">
+            <div>
+              <h4 class="text-xl font-bold text-blue-700 mb-2">
+                <a href="/post/<%= post.id %>" class="hover:underline"><%- post.Title %></a>
+              </h4>
+              <p class="text-gray-600 text-sm mb-4 line-clamp-4"><%- post.description %></p>
+            </div>
+            <div class="mt-4 flex items-center justify-between">
+              <span class="bg-blue-100 text-blue-600 text-xs px-3 py-1 rounded-full"><%= post.date %></span>
+              <div class="space-x-3">
+                <a href="/edit/<%= post.id %>" class="text-blue-500 hover:text-blue-700 text-sm font-medium">Edit</a>
+                <a href="/delete/<%= post.id %>" class="text-red-500 hover:text-red-700 text-sm font-medium" onclick="return confirm('Delete this post?');">Delete</a>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      </div>
+    <% } %>
+  </main>
+
+  <footer class="text-center text-sm text-gray-500 py-6">
+    &copy; <%= new Date().getFullYear() %> MyBlog.enjoyyyyyyyyyy your dayyyyyyy.
+  </footer>
+</body>
+
+</html>

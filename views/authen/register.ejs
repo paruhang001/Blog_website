@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Register</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body
+  class="bg-gradient-to-b from-blue-300 to-blue-100 min-h-screen flex items-center justify-center font-sans text-indigo-900 p-4">
+
+  <div
+    class="relative bg-white p-6 rounded-2xl shadow-lg w-full max-w-sm text-center font-semibold drop-shadow-md">
+    <a href="/" title="Close and go home"
+      class="absolute top-3 right-3 text-2xl font-bold text-blue-400 hover:text-blue-600 transition rounded-full cursor-pointer select-none">&times;</a>
+
+    <h2 class="text-2xl font-extrabold mb-4 text-indigo-700">Register</h2>
+    <p class="mb-6 text-indigo-600 font-semibold">Welcome to <strong class="font-bold">MyBlog</strong>! Create your
+      account to get started.</p>
+
+    <form method="POST" action="/register" autocomplete="off" id="registerForm" class="space-y-4 text-left">
+      <div>
+        <label for="username" class="block mb-1 text-sm font-semibold text-indigo-700">Username</label>
+        <input id="username" name="username" type="text" required placeholder="Your username"
+          class="w-full px-3 py-2 rounded-lg border-2 border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition text-sm" />
+      </div>
+
+      <div>
+        <label for="email" class="block mb-1 text-sm font-semibold text-indigo-700">Email</label>
+        <input id="email" name="email" type="email" required placeholder="you@example.com"
+          class="w-full px-3 py-2 rounded-lg border-2 border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition text-sm" />
+      </div>
+
+      <div>
+        <label for="password" class="block mb-1 text-sm font-semibold text-indigo-700">Password</label>
+        <input id="password" name="password" type="password" required placeholder="Choose a password"
+          class="w-full px-3 py-2 rounded-lg border-2 border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition text-sm" />
+      </div>
+
+      <div>
+        <label for="confirm_password" class="block mb-1 text-sm font-semibold text-indigo-700">Confirm Password</label>
+        <input id="confirm_password" name="confirm_password" type="password" required placeholder="Confirm password"
+          class="w-full px-3 py-2 rounded-lg border-2 border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-blue-500 transition text-sm" />
+      </div>
+
+      <div id="passwordMatchMessage" class="text-xs h-5 mb-3"></div>
+
+      <button type="submit"
+        class="w-full py-2 bg-blue-600 text-white text-base font-bold rounded-xl hover:bg-blue-700 shadow-md transition">
+        Register
+      </button>
+    </form>
+
+    <a href="/login" class="inline-block mt-5 text-indigo-700 font-semibold hover:text-indigo-900 underline cursor-pointer text-sm">
+      Already have an account? Log in here.
+    </a>
+  </div>
+
+  <script>
+    // Password match check
+    const passwordInput = document.getElementById('password');
+    const confirmInput = document.getElementById('confirm_password');
+    const matchMessage = document.getElementById('passwordMatchMessage');
+    const form = document.getElementById('registerForm');
+
+    function checkPasswordMatch() {
+      if (!confirmInput.value) {
+        matchMessage.textContent = '';
+        matchMessage.classList.remove('text-green-600');
+        matchMessage.classList.remove('text-red-600');
+        return;
+      }
+      if (passwordInput.value === confirmInput.value) {
+        matchMessage.textContent = 'Passwords match ✔️';
+        matchMessage.classList.add('text-green-600');
+        matchMessage.classList.remove('text-red-600');
+      } else {
+        matchMessage.textContent = 'Passwords do not match ✖️';
+        matchMessage.classList.add('text-red-600');
+        matchMessage.classList.remove('text-green-600');
+      }
+    }
+
+    confirmInput.addEventListener('input', checkPasswordMatch);
+    passwordInput.addEventListener('input', checkPasswordMatch);
+
+    form.addEventListener('submit', (e) => {
+      if (passwordInput.value !== confirmInput.value) {
+        e.preventDefault();
+        alert('Passwords do not match!');
+        confirmInput.focus();
+      }
+    });
+  </script>
+</body>
+
+</html>

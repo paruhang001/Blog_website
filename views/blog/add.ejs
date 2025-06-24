@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Add Blog Post</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-br from-indigo-50 to-blue-100 min-h-screen font-[Inter,sans-serif] text-gray-800 flex flex-col">
+
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+      <h1 class="text-3xl font-extrabold text-indigo-700">Add New Post</h1>
+      <nav class="space-x-6 text-gray-600 font-medium">
+        <a href="/home" class="hover:text-indigo-700 transition">Home</a>
+        <a href="/logout" class="hover:text-indigo-700 transition">Logout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow max-w-xl mx-auto mt-16 p-10 bg-white rounded-3xl shadow-lg">
+    <h2 class="text-3xl font-bold mb-8 text-indigo-700 text-center">Create Your Blog Post</h2>
+
+    <form action="/post" method="POST" class="space-y-8">
+      <div>
+        <label for="title" class="block text-sm font-semibold mb-3">Title</label>
+        <input type="text" id="title" name="Title" required
+          class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none" />
+      </div>
+
+      <div>
+        <label for="description" class="block text-sm font-semibold mb-3">Description</label>
+        <textarea id="description" name="description" rows="6" required
+          class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none resize-y"></textarea>
+      </div>
+
+      <div>
+        <label for="date" class="block text-sm font-semibold mb-3">Date</label>
+        <input type="date" id="date" name="date" required
+          class="w-full px-5 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-400 focus:outline-none" />
+      </div>
+
+      <button type="submit"
+        class="w-full py-4 bg-indigo-600 text-white font-semibold rounded-lg hover:bg-indigo-700 transition">
+        Publish Post
+      </button>
+    </form>
+  </main>
+
+</body>
+
+</html>
